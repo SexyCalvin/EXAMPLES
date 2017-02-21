@@ -18,10 +18,19 @@ int main() {
 	
 	SORT(1,n);
 	
+	for(i=1;i<=n;i++) {
+		printf("%d ",A[i]);
+	}
+	
 	return 0;
 }
 
 void SORT(int s, int e) {
+	
+	if(s == e){
+		return;
+	}
+	
 	int m, i, j, k;
 	
 	m = (s+e)/2;
@@ -43,5 +52,9 @@ void SORT(int s, int e) {
 		}
 		k++;
 		
+	}
+	
+	for(k=s;k<=e;k++) {
+		A[k] = B[k];
 	}
 }
