@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <iostream>
+
+int INDEX[10001];
+
+int main () {
+	
+	int a, b, i, j;
+	int n, k, r, y;
+	
+	scanf("%d", &n);
+	
+	for(i=1;i<=n;i++) {
+		scanf("%d", &INDEX[i]);
+	}
+	
+	scanf("%d", &k);
+	
+	while(k--) {
+		scanf("%d %d", &a, &b);
+		
+		int r = 0;
+		int y = 0;
+		
+		if(a==b) {
+			for(i=1;i<=b;i++) {
+				r = INDEX[i];
+			}
+			std::cout<<r;
+		}
+		
+		else{
+		for(i=1;i<=b;i++) {
+			r = r + INDEX[i];
+		}
+		for(j=1;j<=a-1;j++) {
+			y = y + INDEX[j];
+		}
+		
+		std::cout<<r-y;
+	}
+	}
+	
+	return 0;
+}
