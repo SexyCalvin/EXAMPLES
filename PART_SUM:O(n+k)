@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <iostream>
+
+int data[10001], sum[10001];
+
+int main () {
+	int n, k, i;
+	
+	scanf("%d", &n);
+	for(i=1;i<=n;i++) {
+		scanf("%d", &data[i]);
+	}	
+	
+	scanf("%d", &k);
+	
+	for(i=1;i<=n;i++) {
+		sum[i] = sum[i-1] + data[i];
+	}
+	
+	while(k--) {
+		int a, b;
+		
+		scanf("%d %d", &a, &b);
+		
+		std::cout<<sum[b]-sum[a-1]<<"\n";
+	}
+	
+	return 0;
+}
