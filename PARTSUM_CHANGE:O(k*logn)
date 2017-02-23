@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <iostream>
+
+int N=1;
+int TREE[30001];
+
+void CHANGE(int i, int x);
+int SUM(int l, int r); //함수사용선언.
+
+int main() {
+	
+	int n, k, i, x;
+	
+	std::cin>>n; //n입력. 
+	
+	while(N<n) {
+		N = N*2; //TREE의 깊이에 따른 항목 수. 
+	}
+	
+	for(i=1;i<=n;i++) {
+		std::cin>>x;
+		CHANGE(i,x); //공백을 숫자로 치환하니까 상관없음ㅋㅎ! 
+	}
+	
+	std::cin>>k; //k입력. 
+	
+	while(k--) {
+		int z; //입력 시작을 판별하는 변수 
+		
+		std::cin>>z;
+		
+		if(z == 0) {
+			int a, b;
+			std::cin>>a>>b;
+			std::cout<<SUM(a,b);
+		}
+		
+		else {
+			int i, x;
+			std::cin>>i>>x;
+			CHANGE(i,x);
+		}
+	}
+	
+	return 0;
+}
+
+void CHANGE(int i, int x) {
+	i = i + (N-1);
+	x = x - TREE[i];
+	while(i>0) {
+		TREE[i] = TREE[i] + x;
+		i = i/2;
+	}
+} 
+
+int SUM(int l, int r) {
+	int sum = 0;
+	
+	l = l+ (N-1);
+	r = r+ (N-1);
+	
+	while (l<=r) {
+		if(l%2 == 1) {
+			sum = sum + TREE[l];
+			l = l+1;
+		}
+		
+		if(r%2 == 0) {
+			sum = sum + TREE[l];
+			r = r-1;
+		}
+		
+		l = l/2;
+		r = r/2;
+	}
+	
+	return sum;
+}
