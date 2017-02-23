@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <iostream>
+
+int data[10001], sum[10001];
+
+int main () {
+	int n, k, i;
+	
+	scanf("%d", &n);
+	for(i=1;i<=n;i++) {
+		scanf("%d", &data[i]);
+	}	//n과 배열을 입력받습니다. 
+	
+	scanf("%d", &k); //k를 입력받습니다. 
+	
+	for(i=1;i<=n;i++) {
+		sum[i] = sum[i-1] + data[i];
+	} //모든 배열번째에 대한 부분합입니다. 
+	
+	while(k--) {
+		int a, b, c;
+		
+		scanf("%d %d %d", &a, &b, &c);
+		if (a == 0) {
+			std::cout<<sum[c]-sum[b-1]<<"\n";
+		}
+		else if(a == 1) {
+			data[b] = c;
+			
+			for(i=1;i<=n;i++) {
+				sum[i] = sum[i-1] + data[i]; //재연산 
+	} 
+		}
+	}
+
+	return 0;
+}
